@@ -363,7 +363,7 @@ function! s:gv(bang, visual, line1, line2, args) abort
     return s:warn(v:exception)
   finally
     if getcwd() !=# cwd
-      cd -
+      try | cd - | catch | endtry
     endif
   endtry
 endfunction
