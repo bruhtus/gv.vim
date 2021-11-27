@@ -88,7 +88,11 @@ function! s:split(tab)
     $wincmd w
     enew
   else
-    vertical botright new
+    if winwidth(0) > 160
+      vertical botright new
+    else
+      botright new
+    endif
   endif
   let w:gv = 1
 endfunction
