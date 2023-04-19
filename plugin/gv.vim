@@ -107,7 +107,6 @@ function! s:open(visual, ...)
   endif
 
   call s:split(a:0)
-  call s:scratch()
   if type == 'commit'
     execute 'e' escape(target, ' ')
     nnoremap <silent> <buffer> gb :GBrowse<cr>
@@ -115,13 +114,13 @@ function! s:open(visual, ...)
     call s:fill(target)
     setf diff
   endif
+  call s:scratch()
   nnoremap <silent> <buffer> q :close<cr>
   let bang = a:0 ? '!' : ''
   if exists('#User#GV'.bang)
     execute 'doautocmd <nomodeline> User GV'.bang
   endif
   wincmd p
-  echo
 endfunction
 
 function! s:dot()
